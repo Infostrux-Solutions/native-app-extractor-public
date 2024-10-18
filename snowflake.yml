@@ -1,0 +1,34 @@
+
+# snowflake.yml
+# This is a project definition file, a required component if you intend to use Snowflake CLI in a project directory such as this template.
+
+definition_version: 2
+env:
+  app_prefix: "infostrux_extractor"
+  app_role: "<% ctx.env.app_prefix %>_role"
+  app_warehouse: "<% ctx.env.app_prefix %>_warehouse"
+  app_database: "<% ctx.env.app_prefix %>"
+  app_name: "<% ctx.env.app_prefix %>_app"
+  app_package_name: "<% ctx.env.app_prefix %>_package"
+
+entities:
+   package:
+      type: application package
+      identifier: <% ctx.env.app_package_name %>
+      manifest: app/manifest.yml
+      artifacts:
+         - src: app/*
+           dest: ./
+      distribution: internal
+      meta:
+         role: <% ctx.env.app_role %>
+         warehouse: <% ctx.env.app_warehouse %>
+   app:
+      type: application
+      identifier: <% ctx.env.app_name %>
+      from:
+         target: package
+      debug: false
+      meta:      
+         role: <% ctx.env.app_role %>
+         warehouse: <% ctx.env.app_warehouse %>

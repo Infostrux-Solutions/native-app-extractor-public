@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "infostrux-extractor"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+
+keywords = ["snowpark container services", "spcs", "etl", "extract"]
+classifiers = [
+  "License :: OSI Approved :: Apache Software License"
+]
+
+authors = [
+  { name = "Gabriel Bologea", email = "gabriel@infostrux.com" },
+  { name = "Milan Mosny", email = "milan@infostrux.com" }
+]
+
+maintainers = [
+  { name = "Gabriel Bologea", email = "gabriel@infostrux.com" },
+  { name = "Milan Mosny", email = "milan@infostrux.com" }
+]
+
+dependencies = [
+    "Flask"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylint",
+    "autopep8",
+    "python-dotenv"
+]
+test = [
+    "pytest>=7.1.2"
+]
+
+[project.scripts]
+service = "service.singerio_tap_service:main"
+
+[tool.setuptools]
+packages = ["service"]
