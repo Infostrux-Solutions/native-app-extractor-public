@@ -1,0 +1,50 @@
+# Based on:
+#
+# sqlfluff defaults
+#  https://docs.sqlfluff.com/en/stable/configuration.html#default-configuration
+#
+# Dbt standards from their own "dbtonic" file
+#   https://github.com/dbt-labs/jaffle-shop-template/blob/main/.sqlfluff
+# referred to from
+#   https://docs.getdbt.com/docs/cloud/dbt-cloud-ide/lint-format#customize-linting
+# 
+# and the project coding standards
+#  see project doc directory
+#
+# Only settings that override sqlfluff defaults are present. 
+# The project coding standards take the highest precendence, followed by Dbt followed by sqlfluff defaults.
+
+
+[sqlfluff]
+dialect = snowflake
+# templater = dbt
+# Dbt standards
+max_line_length = 120
+
+# Project coding standards
+# Exclude the following rules:
+    # L031: Avoid table aliases in from clauses and join conditions
+    # L034: Select wildcards then simple targets before calculations and aggregates.
+    # AL09: Column aliases should not alias to itself, i.e. self-alias.
+exclude_rules = L031, L034, AL09
+
+
+# Project coding standards
+[sqlfluff:indentation]
+tab_space_size = 4
+
+[sqlfluff:rules:aliasing.expression]
+# Dbt standards
+allow_scalar = False
+
+# Project and Dbt coding standards
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = lower

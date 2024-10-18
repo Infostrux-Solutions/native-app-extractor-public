@@ -1,0 +1,11 @@
+output
+.env
+.venv*
+
+__pycache__
+*.egg-info
+
+*.bak
+*.log
+
+service/taps
